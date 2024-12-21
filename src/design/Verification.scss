@@ -1,0 +1,23 @@
+
+.verify-container{
+  min-width: 270px;
+  max-width: 450px;
+  //border: #282c34 2px solid;
+  min-height: 100px;
+  padding-top: 5px;
+  height: auto;
+  border-radius: 10px;
+  display: block;
+  margin: 100px auto;
+  box-shadow: 0 0 8px 0.8px #282c34;
+
+
+  h3{
+    text-align: center;
+  }
+  .spinner{
+    display: block;
+    margin: 10px auto;
+    text-align: center;
+  }
+}

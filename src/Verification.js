@@ -17,7 +17,7 @@ export default function Verification(){
 
 
     useEffect(() => {
-        if ( token === undefined || codeId === undefined ){
+        if ( (token === undefined || token === null)  || (codeId === undefined || codeId === null) ){
             navigate("https://gopesowise.com")
         }
         fetchData()

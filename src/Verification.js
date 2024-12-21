@@ -24,7 +24,7 @@ export default function Verification(){
 
     const fetchData = async () => {
         try {
-            const response = await axios.get(`http://localhost:8080/api/auth/verify/email/link?id=${codeId}&token=${token}`);  // Make GET request
+            const response = await axios.get(`https://dev.server.gopesowise.com/api/auth/verify/email/link?id=${codeId}&token=${token}`);  // Make GET request
             if (response.status !== 200){
                 throw new Error(response.statusText)
             }

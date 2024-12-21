@@ -8,33 +8,30 @@ import axios from "axios";
 export default function Verification(){
     const navigate = useNavigate()
     const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
+    const [message, setMessage] = useState(null);
     const location = useLocation();
     const queryParams = new URLSearchParams(location.search);
     const codeId = queryParams.get('codeId');
     const token = queryParams.get('token');
-    const [successMessage, setSuccessMessage] = useState("")
 
 
     useEffect(() => {
-        if ( (token === undefined || token === null)  || (codeId === undefined || codeId === null) ){
-            window.location.href = "https://gopesowise.com";
-        }
+        // if ( (token === undefined || token === null)  || (codeId === undefined || codeId === null) ){
+        //     window.location.href = "https://gopesowise.com";
+        // }
         fetchData()
     }, [token, codeId]);
 
     const fetchData = async () => {
         try {
-            const response = await axios.get(`https://dev.server.gopesowise.com/api/auth/verify/email/link?id=${codeId}&token=${token}`);  // Make GET request
+            const response = await axios.get(`http://localhost:8080/api/auth/verify/email/link?id=${codeId}&token=${token}`);  // Make GET request
             if (response.status !== 200){
                 throw new Error(response.statusText)
             }
-            setSuccessMessage(response.data.statusText)
-            setTimeout(() => {
-                window.location.href = "https://gopesowise.com";
-            }, 50000);
+            setMessage(response.data.statusText)
+            window.location.href = "https://gopesowise.com";
         } catch (error) {
-            setError(error.response.data.statusText);  // Set error message if request fails
+            setMessage(error.response.data.statusText);  // Set error message if request fails
         } finally {
             setLoading(false);  // Set loading to false when request is complete
         }
@@ -45,8 +42,7 @@ export default function Verification(){
             <h3>Verifying</h3>
             <div className="spinner">
                 {loading? <ClipLoader color="#36d7b7" loading={loading} size={25} />: ""}
-                {(error === null)? "": <p>{error}</p>}
-                {(successMessage !== "")? <p>{successMessage}</p>: <p></p>}
+                {(message === null)? "": <p>{message}</p>}
             </div>
         </div>
     )

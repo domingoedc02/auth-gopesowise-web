@@ -18,7 +18,7 @@ export default function Verification(){
 
     useEffect(() => {
         if ( (token === undefined || token === null)  || (codeId === undefined || codeId === null) ){
-            navigate("https://gopesowise.com")
+            window.location.href = "https://gopesowise.com";
         }
         fetchData()
     }, [token, codeId]);
@@ -31,7 +31,7 @@ export default function Verification(){
             }
             setSuccessMessage(response.data.statusText)
             setTimeout(() => {
-                navigate("https://gopesowise.com")
+                window.location.href = "https://gopesowise.com";
             }, 50000);
         } catch (error) {
             setError(error.response.data.statusText);  // Set error message if request fails

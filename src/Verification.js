@@ -24,12 +24,17 @@ export default function Verification(){
 
     const fetchData = async () => {
         try {
-            const response = await axios.get(`https://dev.server.gopesowise.com/api/auth/verify/email/link?id=${codeId}&token=${token}`,{
-                headers: {
-                    "Content-Type": "application/json",
-                    "Authentication": `Bearer ${token}`
+            const response = await axios.post(`https://dev.server.gopesowise.com/api/auth/verify/email/link`,
+                {
+                    authId: codeId,
+                    token: token
+                }, {
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": `Bearer ${token}`
+                    }
                 }
-            });  // Make GET request
+                );  // Make GET request
             console.log(response)
             if (response.status !== 200){
                 throw new Error(response.statusText)

@@ -30,6 +30,7 @@ export default function Verification(){
                     "Authentication": `Bearer ${token}`
                 }
             });  // Make GET request
+            console.log(response)
             if (response.status !== 200){
                 throw new Error(response.statusText)
             }
@@ -37,6 +38,7 @@ export default function Verification(){
             setMessage(response.data.statusText)
             window.location.href = "https://gopesowise.com";
         } catch (error) {
+            console.log(error)
             setMessage(error.response.data.statusText);  // Set error message if request fails
         } finally {
             setLoading(false);  // Set loading to false when request is complete

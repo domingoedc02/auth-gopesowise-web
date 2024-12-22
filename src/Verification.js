@@ -33,6 +33,7 @@ export default function Verification(){
             if (response.status !== 200){
                 throw new Error(response.statusText)
             }
+            console.log(response)
             setMessage(response.data.statusText)
             window.location.href = "https://gopesowise.com";
         } catch (error) {
